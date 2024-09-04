@@ -1,0 +1,19 @@
+Redirects to a Real URL  # This is the summary or title of the endpoint.
+___
+
+tags:  # This defines the categories for the endpoint.
+  - Bookmarks  # The endpoint is categorized under "Bookmarks".
+
+parameters:
+  - in: path  # Specifies that the parameter is in the URL path.
+    name: short_url  # The name of the parameter is "short_url".
+    required: true  # Indicates that this parameter is required.
+    type: string  # The type of the parameter should be specified as a string.
+    description: "The shortened URL code that will be used to find the real URL."
+
+responses:
+  302:  # The response code for a successful redirection.
+    description: Redirects permanently  # Describes that the user is permanently redirected.
+  
+  404:  # The response code when the record is not found.
+    description: Record was not found  # Describes that the short URL did not match any records.

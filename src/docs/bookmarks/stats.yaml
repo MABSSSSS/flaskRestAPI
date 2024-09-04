@@ -1,0 +1,17 @@
+GET stats about bookmarks  # This is the summary or title of the endpoint.
+---
+tags:
+  - Bookmarks  # Categorizes this endpoint under the "Bookmarks" tag in the API documentation.
+
+parameters:
+  - in: header  # Specifies that this parameter is located in the request header.
+    name: Authorization  # The name of the header parameter is "Authorization".
+    required: true  # Indicates that the Authorization header is required.
+    # Typically, this header will include a JWT token or other form of authorization.
+
+responses:
+  200:
+    description: Bookmarks stats  # Describes the response when the request is successful.
+
+  401:
+    description: Fails to get items due to authentication error  # Describes the response when authentication fails.

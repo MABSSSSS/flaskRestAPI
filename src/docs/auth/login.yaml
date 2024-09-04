@@ -1,0 +1,47 @@
+user_login:
+  tags:
+    - Authentication  # This tag categorizes the endpoint under "Authentication" in the API documentation.
+  parameters:
+    - name: body  # The parameter name, indicating the request body.
+      description: The body should contain the user login credentials  # Description of what the request body should include.
+      in: body  # Specifies that the parameter is in the body of the request.
+      required: true  # Indicates that this parameter is required.
+      schema:  # Defines the structure of the request body.
+        type: object  # The request body is expected to be a JSON object.
+        required:  # Specifies the required fields within the object.
+          - email
+          - password
+        properties:  # Defines the properties of the object.
+          email:
+            type: string  # The type of the email field is a string.
+            format: email  # The format indicates that the string should follow an email pattern.
+            example: "user@gmail.com"  # Example value for the email field.
+          password:
+            type: string  # The type of the password field is a string.
+            format: password  # The format indicates that the field is a password, typically obscured in UI.
+            example: "********"  # Example value for the password field (masked for security).
+  responses:
+    200:  # HTTP status code for a successful login.
+      description: When a user successfully logs in  # Description of the 200 response.
+      schema:
+        type: object  # The response body is expected to be a JSON object.
+        properties:  # Defines the properties of the response object.
+          access_token:
+            type: string  # The type of the access_token field is a string.
+            description: JWT token for authenticated user  # Description of the access_token field.
+    400:  # HTTP status code for a bad request, such as missing or invalid data.
+      description: Fails to login due to bad request data  # Description of the 400 response.
+      schema:
+        type: object  # The response body is expected to be a JSON object.
+        properties:  # Defines the properties of the response object.
+          message:
+            type: string  # The type of the message field is a string.
+            example: "Invalid input data"  # Example value for the message field.
+    401:  # HTTP status code for unauthorized access, such as incorrect credentials.
+      description: A user supplies incorrect credentials  # Description of the 401 response.
+      schema:
+        type: object  # The response body is expected to be a JSON object.
+        properties:  # Defines the properties of the response object.
+          message:
+            type: string  # The type of the message field is a string.
+            example: "Incorrect email or password"  # Example value for the message field.
